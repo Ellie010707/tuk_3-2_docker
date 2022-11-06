@@ -1,0 +1,63 @@
+version: "3"
+
+networks:
+  custom_bridge:
+    driver: bridge
+
+services:
+  kyl1:
+    container_name: kyl1
+    build: ./kyl1
+    command: >
+      bash -c "python3 manage.py makemigrations &&
+               python3 manage.py migrate &&
+               python3 manage.py runserver 0.0.0.0:8081"
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./kyl1:/app2
+    networks:
+      - custom_bridge
+
+
+  kyl2:
+    container_name: kyl2
+    build: ./kyl2
+    command: >
+      bash -c "python3 manage.py makemigrations &&
+               python3 manage.py migrate &&
+               python3 manage.py runserver 0.0.0.0:8082"
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./kyl2:/app2
+    networks:
+      - custom_bridge
+
+  kyl3:
+    container_name: kyl3
+    build: ./kyl3
+    command: >
+      bash -c "python3 manage.py makemigrations &&
+               python3 manage.py migrate &&
+               python3 manage.py runserver 0.0.0.0:8083"
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./kyl3:/app3
+    networks:
+      - custom_bridge
+  
+  kyl4:
+    container_name: kyl4
+    build: ./kyl4
+    command: >
+      bash -c "python3 manage.py makemigrations &&
+               python3 manage.py migrate &&
+               python3 manage.py runserver 0.0.0.0:8084"
+    ports:
+      - "8084:8084"
+    volumes:
+      - ./kyl4:/app4
+    networks:
+      - custom_bridge
