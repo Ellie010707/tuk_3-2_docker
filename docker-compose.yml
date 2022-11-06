@@ -31,6 +31,8 @@ services:
       - "8082:8082"
     volumes:
       - ./kyl2:/app2
+    depends_on:
+      - kyl1
     networks:
       - custom_bridge
 
@@ -45,6 +47,8 @@ services:
       - "8083:8083"
     volumes:
       - ./kyl3:/app3
+    depends_on:
+      - kyl2
     networks:
       - custom_bridge
   
@@ -59,5 +63,7 @@ services:
       - "8084:8084"
     volumes:
       - ./kyl4:/app4
+    depends_on:
+      - kyl3
     networks:
       - custom_bridge
